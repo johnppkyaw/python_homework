@@ -2,6 +2,7 @@ import csv
 import traceback
 import os
 import custom_module
+from datetime import datetime
 
 #Task 2: Read a CSV File
 def read_employees():
@@ -88,3 +89,78 @@ def set_that_secret(new_secret):
 
 set_that_secret('John was here')
 print(custom_module.secret)
+
+#Task 12: Read minutes1.csv and minutes2.csv
+def read_minutes():
+  minutes1 = {}
+  minutes2 = {}
+  def create_minutes(filename, dict):
+    rows = []
+    try:
+      with open(filename, 'r') as file:
+        reader = csv.reader(file)
+        for index, row in enumerate(reader):
+          if(index == 0):
+            dict['fields'] = row
+          else:
+            rows.append(tuple(row))
+      dict['rows'] = rows
+    except Exception as e:
+      trace_back = traceback.extract_tb(e.__traceback__)
+      stack_trace = list()
+      for trace in trace_back:
+          stack_trace.append(f'File : {trace[0]} , Line : {trace[1]}, Func.Name : {trace[2]}, Message : {trace[3]}')
+      print(f"Exception type: {type(e).__name__}")
+      message = str(e)
+      if message:
+          print(f"Exception message: {message}")
+      print(f"Stack trace: {stack_trace}")
+  create_minutes('../csv/minutes1.csv', minutes1)
+  create_minutes('../csv/minutes2.csv', minutes2)
+  return minutes1, minutes2
+
+minutes1, minutes2 = read_minutes()
+print(minutes1)
+print(minutes2)
+
+#Task 13: Create minutes_set
+def create_minutes_set():
+  set1 = set(minutes1['rows'])
+  set2 = set(minutes2['rows'])
+  union_set = set1.union(set2)
+  return union_set
+
+minutes_set = create_minutes_set()
+
+#Task 14: Convert to datetime
+def create_minutes_list():
+  minutes_list = list(minutes_set)
+  converted_list = list(map(lambda x: (x[0], datetime.strptime(x[1], "%B %d, %Y")), minutes_list))
+  return converted_list
+
+minutes_list = create_minutes_list()
+print(minutes_list)
+
+#Task 15: Write Out Sorted List
+def write_sorted_list():
+  minutes_list.sort(key=lambda row : row[1])
+  converted_list = list(map(lambda x: (x[0], datetime.strftime(x[1], "%B %d, %Y")), minutes_list))
+  try:
+    with open('minutes.csv', 'w', newline='') as file:
+      writer = csv.writer(file)
+      writer.writerow(minutes1['fields'])
+      for eachRow in converted_list:
+        writer.writerow(eachRow)
+  except Exception as e:
+    trace_back = traceback.extract_tb(e.__traceback__)
+    stack_trace = list()
+    for trace in trace_back:
+        stack_trace.append(f'File : {trace[0]} , Line : {trace[1]}, Func.Name : {trace[2]}, Message : {trace[3]}')
+    print(f"Exception type: {type(e).__name__}")
+    message = str(e)
+    if message:
+      print(f"Exception message: {message}")
+    print(f"Stack trace: {stack_trace}")
+  return converted_list
+
+write_sorted_list()
