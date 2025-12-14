@@ -1,0 +1,12 @@
+function: hello
+positional parameters: none
+keyword parameters: none
+return: Hello, World!
+function: takes_args
+positional parameters: (1, 2, 3, 4)
+keyword parameters: none
+return: True
+function: takes_kwargs
+positional parameters: none
+keyword parameters: {'key1': 'lock2', 'key2': 'lock3'}
+return: <function logger_decorator at 0x104ee3110>
