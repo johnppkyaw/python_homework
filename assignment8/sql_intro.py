@@ -30,12 +30,7 @@ try:
   with sqlite3.connect("../db/magazines.db") as conn:
     conn.execute("PRAGMA foreign_keys = 1")
     cursor = conn.cursor()
-
-    # cursor.execute("DROP TABLE Subscriptions")
-    # cursor.execute("DROP TABLE Subscribers")
-    # cursor.execute("DROP TABLE Magazines")
-    # cursor.execute("DROP TABLE Publishers")
-    
+        
     #Task 2: Define Database Structure
     #Publishers table
     cursor.execute("""
