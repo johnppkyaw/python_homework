@@ -1,0 +1,23 @@
+1) Which sections of the website are restricted for crawling?
+--Too many restricted sections to list.
+--Everyone is restricted to crawl the dynamically-generated pages
+Allow: /w/api.php?action=mobileview&
+Allow: /w/load.php?
+Allow: /api/rest_v1/?doc
+Allow: /w/rest.php/site/v1/sitemap
+Disallow: /w/
+Disallow: /api/
+Disallow: /trap/
+Disallow: /wiki/Special:
+Disallow: /wiki/Spezial:
+Disallow: /wiki/Spesial:
+Disallow: /wiki/Special%3A
+Disallow: /wiki/Spezial%3A
+Disallow: /wiki/Spesial%3A
+
+2) Are there specific rules for certain user agents?
+--Yes, certain agents do not have access to any sections.  
+--SemrushBot is allowed to crawl with a delay for 5 seconds.
+--Inktomi's "Slurp" is allowed to crawl with a delay.
+
+3) The purpose of robots.txt files is to set the boundaries on who can scrap which sections of the website.  This will help with the server traffic and protecting the sensitive information.  
