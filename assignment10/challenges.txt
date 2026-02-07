@@ -1,0 +1,4 @@
+#Task 6
+Describe any challenges you faced in completing this assignment and how you resolved them.
+
+The main challenge I faced in Task 6 was getting familiar with the syntax of the path when using the XPath technique.  I kept getting NoSuchElementException exception and had to looked up on google about the syntax such how to start the path from the body element and how to indicate which child of the same element type of the parent.  I kept trying the technique with print using different paths.  Once i figured that out, the rest was easy.
