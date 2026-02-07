@@ -38,7 +38,7 @@ try:
           if author_list:
               authors = "; ".join(author_list)
           else:
-              authors = ""
+              authors = "No authors found."
             
           #type and year
           type_and_year = search_result.find_element(By.CSS_SELECTOR, 'span[class="display-info-primary"]').text
